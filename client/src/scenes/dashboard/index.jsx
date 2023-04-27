@@ -8,7 +8,6 @@ import {
   PersonAdd,
   Traffic,
 } from "@mui/icons-material";
-
 import {
   Box,
   Button,
@@ -26,7 +25,6 @@ const Dashboard = () => {
   const theme = useTheme();
   const isNonMediumScreens = useMediaQuery("(min-width: 1200px)");
   const { data, isLoading } = useGetDashboardQuery();
-  //console.log(data);
 
   const columns = [
     {
@@ -40,15 +38,14 @@ const Dashboard = () => {
       flex: 1,
     },
     {
-      field: "createAt",
+      field: "createdAt",
       headerName: "CreatedAt",
       flex: 1,
     },
-
     {
       field: "products",
-      headerName: "% of Products",
-      flex: 0.4,
+      headerName: "# of Products",
+      flex: 0.5,
       sortable: false,
       renderCell: (params) => params.value.length,
     },
@@ -59,10 +56,12 @@ const Dashboard = () => {
       renderCell: (params) => `$${Number(params.value).toFixed(2)}`,
     },
   ];
+
   return (
     <Box m="1.5rem 2.5rem">
       <FlexBetween>
         <Header title="DASHBOARD" subtitle="Welcome to your dashboard" />
+
         <Box>
           <Button
             sx={{
@@ -78,25 +77,18 @@ const Dashboard = () => {
           </Button>
         </Box>
       </FlexBetween>
+
       <Box
-        my="20px"
+        mt="20px"
         display="grid"
-        gridTemplateColumns="repeat(12,1fr)"
+        gridTemplateColumns="repeat(12, 1fr)"
         gridAutoRows="160px"
         gap="20px"
         sx={{
-          "& >div": { gridColumn: isNonMediumScreens ? undefined : "span 12" },
+          "& > div": { gridColumn: isNonMediumScreens ? undefined : "span 12" },
         }}
       >
-        <Box
-          gridColumn="span 8"
-          gridRow="span2"
-          backgroundColor={theme.palette.background.alt}
-          p="1rem"
-          borderRadius="0.55rem"
-        >
-          <OverviewChart view="sales" isDashboard={true} />
-        </Box>
+        {/* ROW 1 */}
         <StatBox
           title="Total Customers"
           value={data && data.totalCustomers}
@@ -109,8 +101,8 @@ const Dashboard = () => {
           }
         />
         <StatBox
-          title="Sales today"
-          value={data && data.todalStats.totalSales}
+          title="Sales Today"
+          value={data && data.todayStats.totalSales}
           increase="+21%"
           description="Since last month"
           icon={
@@ -119,6 +111,15 @@ const Dashboard = () => {
             />
           }
         />
+        <Box
+          gridColumn="span 8"
+          gridRow="span 2"
+          backgroundColor={theme.palette.background.alt}
+          p="1rem"
+          borderRadius="0.55rem"
+        >
+          <OverviewChart view="sales" isDashboard={true} />
+        </Box>
         <StatBox
           title="Monthly Sales"
           value={data && data.thisMonthStats.totalSales}
@@ -142,14 +143,14 @@ const Dashboard = () => {
           }
         />
 
-        {/* Row 2 */}
+        {/* ROW 2 */}
         <Box
-          gridcolumn="span 8"
+          gridColumn="span 8"
           gridRow="span 3"
           sx={{
             "& .MuiDataGrid-root": {
               border: "none",
-              boerderRadius: "5rem",
+              borderRadius: "5rem",
             },
             "& .MuiDataGrid-cell": {
               borderBottom: "none",
@@ -168,7 +169,7 @@ const Dashboard = () => {
               borderTop: "none",
             },
             "& .MuiDataGrid-toolbarContainer .MuiButton-text": {
-              color: `${theme.palette.secondary[200]}  !important`,
+              color: `${theme.palette.secondary[200]} !important`,
             },
           }}
         >
@@ -184,7 +185,7 @@ const Dashboard = () => {
           gridRow="span 3"
           backgroundColor={theme.palette.background.alt}
           p="1.5rem"
-          borrderRadius="0.55rem"
+          borderRadius="0.55rem"
         >
           <Typography variant="h6" sx={{ color: theme.palette.secondary[100] }}>
             Sales By Category
@@ -195,7 +196,7 @@ const Dashboard = () => {
             fontSize="0.8rem"
             sx={{ color: theme.palette.secondary[200] }}
           >
-            Breakdown of real states and infromation via category for revenue
+            Breakdown of real states and information via category for revenue
             made for this year and total sales.
           </Typography>
         </Box>
