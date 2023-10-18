@@ -85,6 +85,8 @@ const Product = ({
   );
 };
 
+
+
 const Products = () => {
   const { data, isLoading } = useGetProductsQuery();
   const isNonMobile = useMediaQuery("(min-width: 1000px)");
