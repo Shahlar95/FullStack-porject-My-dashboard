@@ -60,7 +60,7 @@ mongoose
     //only add data one time
   //   AffilliateStat.insertMany(dataAffiliateStat)
   //  OverallStat.insertMany(dataOverallStat);
-  //   Product.insertMany(dataProduct);
+  // Product.insertMany(dataProduct);
   //   ProductStat.insertMany(dataProductStat);
   //   Transaction.insertMany(dataTransaction);
   //   User.insertMany(dataUser);
