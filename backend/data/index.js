@@ -2276,15 +2276,7 @@ export const dataAffiliateStat = [
       rating: 1.15,
       supply: 1320,
     },
-    {
-      _id: "63701d24f03239c72c00017z",
-      name: "Shahlar Abbasov",
-      price: 311.71,
-      description: "Revision of Nonaut Sub in Mouth/Throat, Via Opening",
-      category: "clothing",
-      rating: 1.15,
-      supply: 1320,
-    },
+    
     {
       _id: "63701d24f03239c72c00018f",
       name: "Killy Fidian",
